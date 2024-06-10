@@ -21,6 +21,55 @@ Enter in http://0.0.0.0:8080/dashboard/#/signup
 
 Create tables on NocoDB.
 
+## This project was done with:
+
+* [Django 5.0.6](https://www.djangoproject.com/)
+* [NocoDB](https://nocodb.com/)
+* [PostgreSQL](https://www.postgresql.org/)
+
+## How to run project?
+
+* Clone this repository.
+* Create virtualenv with Python 3.
+* Active the virtualenv.
+* Install dependences.
+* Run the migrations.
+
+```
+https://github.com/rg3915/nocodb-django-example.git
+cd nocodb-django-example
+
+python -m venv .venv
+source .venv/bin/activate
+
+pip install -r requirements.txt
+
+python contrib/env_gen.py
+
+python manage.py migrate
+python manage.py createsuperuser --username="admin" --email=""
+
+python manage.py runserver
+```
+
+## How does it work?
+
+This project runs NocoDB along with Django and PostgreSQL.
+
+With it, you can use the NocoDB interface and Django Admin.
+
+1. First, you need to create the tables in NocoDB.
+2. Then, using the command
+
+`python manage.py inspectdb`
+
+you retrieve the models of the created tables and edit your `models.py`.
+
+3. Finally, just run
+
+`python manage.py makemigrations` and
+
+`python manage.py migrate`
 
 
 ## Django step by step
@@ -33,13 +82,13 @@ python -m venv .venv
 source .venv/bin/activate
 ```
 
-Gera .env
+Generate `.env`
 
 ```
 python contrib/env_gen.py
 ```
 
-Install as libs.
+Install the libs.
 
 ```
 pip install -r requirements.txt
