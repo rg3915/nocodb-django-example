@@ -39,7 +39,7 @@ Gera .env
 python contrib/env_gen.py
 ```
 
-Instala as libs.
+Install as libs.
 
 ```
 pip install -r requirements.txt
@@ -212,3 +212,19 @@ python manage.py runserver
 Open
 
 http://localhost:8000/admin/
+
+
+## PG Admin
+
+http://0.0.0.0:5051/
+
+
+```
+host: root_db
+port: 5432
+username: postgres
+password: password
+```
+
+
+![](img/pgadmin.png)
