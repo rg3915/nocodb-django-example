@@ -9,18 +9,6 @@
 
 # Install
 
-## docker-compose
-
-https://github.com/nocodb/nocodb/blob/develop/docker-compose/pg/docker-compose.yml
-
-```
-docker-compose up -d
-```
-
-Enter in http://0.0.0.0:8080/dashboard/#/signup
-
-Create tables on NocoDB.
-
 ## This project was done with:
 
 * [Django 5.0.6](https://www.djangoproject.com/)
@@ -44,6 +32,8 @@ source .venv/bin/activate
 
 pip install -r requirements.txt
 
+docker-compose up -d
+
 python contrib/env_gen.py
 
 python manage.py migrate
@@ -51,6 +41,15 @@ python manage.py createsuperuser --username="admin" --email=""
 
 python manage.py runserver
 ```
+
+#### docker-compose
+
+https://github.com/nocodb/nocodb/blob/develop/docker-compose/pg/docker-compose.yml
+
+Enter in http://0.0.0.0:8080/dashboard/#/signup
+
+> Create tables on NocoDB.
+
 
 ## How does it work?
 
