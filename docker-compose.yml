@@ -1,0 +1,59 @@
+# https://github.com/nocodb/nocodb/blob/develop/docker-compose/pg/docker-compose.yml
+version: "3.8"
+
+services:
+  nocodb:
+    depends_on:
+      root_db:
+        condition: service_healthy
+    environment:
+      NC_DB: "pg://root_db:5432?u=postgres&p=password&d=root_db"
+    image: "nocodb/nocodb:latest"
+    ports:
+      - "8080:8080"
+    restart: always
+    volumes:
+      - "nc_data:/usr/app/data"
+    networks:
+      - nocodb-network
+
+  root_db:
+    environment:
+      POSTGRES_DB: root_db
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+    ports:
+      - 5431:5432
+    healthcheck:
+      interval: 10s
+      retries: 10
+      test: "pg_isready -U \"$$POSTGRES_USER\" -d \"$$POSTGRES_DB\""
+      timeout: 2s
+    image: postgres
+    restart: always
+    volumes:
+      - "db_data:/var/lib/postgresql/data"
+    networks:
+      - nocodb-network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: unless-stopped
+    volumes:
+       - pgadmin:/var/lib/pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    ports:
+      - 5051:80
+    networks:
+      - nocodb-network
+
+volumes:
+  db_data: {}
+  nc_data: {}
+  pgadmin: {}
+
+networks:
+  nocodb-network:
