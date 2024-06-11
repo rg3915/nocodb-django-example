@@ -70,7 +70,7 @@ you retrieve the models of the created tables and edit your `models.py`.
 
 `python manage.py migrate`
 
-![](img/nocodb.png)
+![](img/nocodb2.png)
 
 
 ## Django step by step
